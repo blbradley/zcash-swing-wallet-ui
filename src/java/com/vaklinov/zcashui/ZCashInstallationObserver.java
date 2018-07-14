@@ -87,14 +87,14 @@ public class ZCashInstallationObserver
 		}
 
 		Log.info("Using ZENCash utilities: " +
-		                   "zend: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
-		                   "zen-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
+		                   "zcashd: "    + ((zcashd != null) ? zcashd.getCanonicalPath() : "<MISSING>") + ", " +
+		                   "zcash-cli: " + ((zcashcli != null) ? zcashcli.getCanonicalPath() : "<MISSING>"));
 
 		if ((zcashd == null) || (zcashcli == null) || (!zcashd.exists()) || (!zcashcli.exists()))
 		{
 			throw new InstallationDetectionException(
 				"The ZENCash GUI Wallet installation directory " + installDir + " needs\nto contain " +
-				"the command line utilities zend and zen-cli. At least one of them is missing! \n" +
+				"the command line utilities zcashd and zcash-cli. At least one of them is missing! \n" +
 				"Please place files ZENCashSwingWalletUI.jar, " + OSUtil.getZCashCli() + ", " + 
 				OSUtil.getZCashd() + " in the same directory.");
 		}
@@ -119,7 +119,7 @@ public class ZCashInstallationObserver
 	private synchronized DaemonInfo getDaemonInfoForUNIXLikeOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForUNIXLikeOS("zend");
+		return getDaemonInfoForUNIXLikeOS("zcashd");
 	}
 
 	// So far tested on Mac OS X and Linux - expected to work on other UNIXes as well
@@ -196,7 +196,7 @@ public class ZCashInstallationObserver
 	private synchronized DaemonInfo getDaemonInfoForWindowsOS()
 		throws IOException, InterruptedException
 	{
-		return getDaemonInfoForWindowsOS("zend");
+		return getDaemonInfoForWindowsOS("zcashd");
 	}
 	
 	public static synchronized DaemonInfo getDaemonInfoForWindowsOS(String daemonName)
@@ -243,7 +243,7 @@ public class ZCashInstallationObserver
 					{
 						info.status = DAEMON_STATUS.RUNNING;
 						foundZCash = true;
-						//System.out.println("zend process data is: " + line);
+						//System.out.println("zcashd process data is: " + line);
 					}
 				} else if ((i >= 4) && foundZCash)
 				{
@@ -294,7 +294,7 @@ public class ZCashInstallationObserver
 		}
 		
 		String blockChainDir = OSUtil.getBlockchainDirectory();
-		File zenConf = new File(blockChainDir + File.separator + "zen.conf");
+		File zenConf = new File(blockChainDir + File.separator + "zcash.conf");
 		if (zenConf.exists())
 		{
 			Properties confProps = new Properties();
