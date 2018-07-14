@@ -1,0 +1,8 @@
+Package: zcash-desktop-gui-wallet
+Version: 0.83.2
+Section: misc
+Priority: low
+Architecture: all
+Description: ZCash Desktop GUI Wallet
+Maintainer: admin@zencash.com
+Depends: openjdk-8-jre-headless, zcash

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=ZCash Wallet
+Comment=ZCash Desktop GUI Wallet (full node)
+GenericName=ZCash Wallet
+Keywords=ZCash;Crypto-currency;
+Exec=zencash-desktop-gui-wallet
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/lib/zcash-gui-wallet/ZEN-icon.png
+Categories=GNOME;Application;
+StartupNotify=true

@@ -6,16 +6,16 @@
 
     <parent>
         <groupId>com.zencash</groupId>
-        <artifactId>ZENCashOfficialSwingWalletUI</artifactId>
+        <artifactId>ZCashOfficialSwingWalletUI</artifactId>
         <version>0.83.2-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zencash-wallet-swing</artifactId>
+    <artifactId>zcash-wallet-swing</artifactId>
     <packaging>jar</packaging>
 
     <properties>
         <main.class>com.vaklinov.zcashui.ZCashUI</main.class>
-        <application.finalName>ZENCashSwingWalletUI</application.finalName>
+        <application.finalName>ZCashSwingWalletUI</application.finalName>
     </properties>
 
     <dependencies>
@@ -122,7 +122,7 @@
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>
-                                        <prefix>/usr/lib/zencash-gui-wallet</prefix>
+                                        <prefix>/usr/lib/zcash-gui-wallet</prefix>
                                         <filemode>755</filemode>
                                     </mapper>
                                 </data>
@@ -131,7 +131,7 @@
                                     <type>directory</type>
                                     <mapper>
                                         <type>perm</type>
-                                        <prefix>/usr/lib/zencash-gui-wallet</prefix>
+                                        <prefix>/usr/lib/zcash-gui-wallet</prefix>
                                         <filemode>755</filemode>
                                     </mapper>
                                 </data>
@@ -140,12 +140,12 @@
                                     <type>directory</type>
                                     <mapper>
                                         <type>perm</type>
-                                        <prefix>/usr/lib/zencash-gui-wallet</prefix>
+                                        <prefix>/usr/lib/zcash-gui-wallet</prefix>
                                         <filemode>755</filemode>
                                     </mapper>
                                 </data>
                                 <data>
-                                    <src>${project.build.directory}/deb/zencash-desktop-gui-wallet</src>
+                                    <src>${project.build.directory}/deb/zcash-desktop-gui-wallet</src>
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>
@@ -154,7 +154,7 @@
                                     </mapper>
                                 </data>
                                 <data>
-                                    <src>${project.build.directory}/deb/ZENCashWallet.desktop</src>
+                                    <src>${project.build.directory}/deb/ZCashWallet.desktop</src>
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>
@@ -167,7 +167,7 @@
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>
-                                        <prefix>/usr/lib/zencash-gui-wallet</prefix>
+                                        <prefix>/usr/lib/zcash-gui-wallet</prefix>
                                         <filemode>755</filemode>
                                     </mapper>
                                 </data>

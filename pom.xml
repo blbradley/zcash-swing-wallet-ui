@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zencash</groupId>
-    <artifactId>ZENCashOfficialSwingWalletUI</artifactId>
+    <artifactId>ZCashOfficialSwingWalletUI</artifactId>
     <version>0.83.2-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>ZENCash Official Swing Wallet UI</name>
+    <name>ZCash Swing Wallet UI</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +25,7 @@
 
 
     <modules>
-        <module>zencash-wallet-swing</module>
+        <module>zcash-wallet-swing</module>
         <module>installer</module>
     </modules>
 
