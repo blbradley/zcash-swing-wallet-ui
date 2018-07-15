@@ -26,12 +26,14 @@ To setup the APT repository and install packages, using a terminal run the follo
 sudo apt-get update
 sudo apt-get install apt-transport-https lsb-release
 
-echo 'deb https://zencashofficial.github.io/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zen.list
-gpg --keyserver ha.pool.sks-keyservers.net --recv 219F55740BBF7A1CE368BA45FB7053CE4991B669
-gpg --export 219F55740BBF7A1CE368BA45FB7053CE4991B669 | sudo apt-key add -
+wget -qO - https://apt.z.cash/zcash.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://apt.z.cash/ jessie main" | sudo tee /etc/apt/sources.list.d/zcash.list
+
+wget -qO - http://zen.coinsmith.co/repo/key.asc | sudo apt-key add -
+echo 'deb http://zen.coinsmith.co/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zcash.list
 
 sudo apt-get update
-sudo apt-get install zen zencash-desktop-gui-wallet
+sudo apt-get install zcash zcash-desktop-gui-wallet
 ```
 Then you need to set up the `zen.conf` configuration file:
 ```
