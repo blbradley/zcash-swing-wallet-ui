@@ -152,7 +152,7 @@
 	      <data src="${deb.resource.dir}/ZCashWallet.desktop" type="file">
 	        <mapper type="perm" filemode="755" prefix="/usr/share/applications"/>
 	      </data>
-	      <data src="${deb.resource.dir}/ZEN-icon.png" type="file">
+	      <data src="${deb.resource.dir}/zcash-logo-square-small.png" type="file">
 	        <mapper type="perm" filemode="755" prefix="/usr/lib/zcash-gui-wallet"/>
 	      </data>	    	
 	    </deb>

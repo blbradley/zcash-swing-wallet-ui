@@ -116,7 +116,7 @@ public class ZCashUI
         
         ClassLoader cl = this.getClass().getClassLoader();
 
-        this.setIconImage(new ImageIcon(cl.getResource("images/ZEN-yellow.orange-logo.png")).getImage());
+        this.setIconImage(new ImageIcon(cl.getResource("images/circle-zcash-color.png")).getImage());
 
         Container contentPane = this.getContentPane();
 
