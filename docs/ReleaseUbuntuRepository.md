@@ -24,20 +24,22 @@ for Debian/Ubuntu (and similar) Linux systems.
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
 sudo apt-get update
-sudo apt-get install apt-transport-https lsb-release
+sudo apt-get install -y apt-transport-https lsb-release
 
-echo 'deb https://zencashofficial.github.io/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zen.list
-gpg --keyserver ha.pool.sks-keyservers.net --recv 219F55740BBF7A1CE368BA45FB7053CE4991B669
-gpg --export 219F55740BBF7A1CE368BA45FB7053CE4991B669 | sudo apt-key add -
+wget -qO - https://apt.z.cash/zcash.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://apt.z.cash/ jessie main" | sudo tee /etc/apt/sources.list.d/zcash.list
+
+wget -qO - http://zcash.coinsmith.co/repo/key.asc | sudo apt-key add -
+echo 'deb [arch=amd64] http://zcash.coinsmith.co/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zcash.list
 
 sudo apt-get update
-sudo apt-get install zen zencash-desktop-gui-wallet
+sudo apt-get install zcash zcash-desktop-gui-wallet
 ```
 Then you need to set up the `zen.conf` configuration file:
 ```
-mkdir -p ~/.zen
-echo "rpcuser=username" >> ~/.zen/zen.conf
-echo "rpcpassword=$(head -c 32 /dev/urandom | base64)" >> ~/.zen/zen.conf
+mkdir -p ~/.zcash
+echo "rpcuser=username" >> ~/.zcash/zcash.conf
+echo "rpcpassword=$(head -c 32 /dev/urandom | base64)" >> ~/.zcash/zcash.conf
 ```
 
 Finally you need to download the Z cryptographic keys (takes a while):
@@ -52,7 +54,7 @@ To launch the ZENCash Desktop GUI Wallet you can just search and click on it in 
 
 ...or alternatively, run the command `zencash-desktop-gui-wallet` from a terminal:
 ```
-zencash-desktop-gui-wallet
+zcash-desktop-gui-wallet
 ```
 
 ### Disclaimer
