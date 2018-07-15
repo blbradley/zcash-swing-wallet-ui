@@ -29,8 +29,8 @@ sudo apt-get install -y apt-transport-https lsb-release
 wget -qO - https://apt.z.cash/zcash.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://apt.z.cash/ jessie main" | sudo tee /etc/apt/sources.list.d/zcash.list
 
-wget -qO - http://zen.coinsmith.co/repo/key.asc | sudo apt-key add -
-echo 'deb http://zen.coinsmith.co/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zcash.list
+wget -qO - http://zcash.coinsmith.co/repo/key.asc | sudo apt-key add -
+echo 'deb http://zcash.coinsmith.co/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zcash.list
 
 sudo apt-get update
 sudo apt-get install zcash zcash-desktop-gui-wallet
