@@ -51,7 +51,7 @@ public class StartupProgressDialog extends JFrame {
     {
         this.clientCaller = clientCaller;
         
-        URL iconUrl = this.getClass().getClassLoader().getResource("images/ZEN-yellow.orange-logo.png");
+        URL iconUrl = this.getClass().getClassLoader().getResource("images/circle-zcash-color.png");
         imageIcon = new ImageIcon(iconUrl);
         imageLabel.setIcon(imageIcon);
         imageLabel.setBorder(BorderFactory.createEmptyBorder(16, 40, 8, 40));

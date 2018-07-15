@@ -189,7 +189,7 @@ public class DashboardPanel
 
 		JPanel tempPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 14, 16));
 		JLabel logoLabel = new JLabel(new ImageIcon(
-				this.getClass().getClassLoader().getResource("images/ZEN-yellow.orange-logo-small.png")));
+				this.getClass().getClassLoader().getResource("images/zcash-logo-square-small.png")));
 		tempPanel.add(logoLabel);
 		JLabel zcLabel = new JLabel(langUtil.getString("panel.dashboard.main.label"));
 		tempPanel.add(zcLabel);
@@ -902,13 +902,13 @@ public class DashboardPanel
 			
 			try
 			{
-				URL u = new URL("https://api.coinmarketcap.com/v1/ticker/zencash");
+				URL u = new URL("https://api.coinmarketcap.com/v1/ticker/zcash");
 				Reader r = new InputStreamReader(u.openStream(), "UTF-8");
 				JsonArray ar = Json.parse(r).asArray();
 				data = ar.get(0).asObject();
 			} catch (Exception ioe)
 			{
-				Log.warning("Could not obtain ZEN exchange information from coinmarketcap.com due to: {0} {1}", 
+				Log.warning("Could not obtain ZEC exchange information from coinmarketcap.com due to: {0} {1}",
 						    ioe.getClass().getName(), ioe.getMessage());
 			}
 			
