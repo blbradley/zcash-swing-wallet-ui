@@ -37,9 +37,9 @@ sudo apt-get install zcash zcash-desktop-gui-wallet
 ```
 Then you need to set up the `zen.conf` configuration file:
 ```
-mkdir -p ~/.zen
-echo "rpcuser=username" >> ~/.zen/zen.conf
-echo "rpcpassword=$(head -c 32 /dev/urandom | base64)" >> ~/.zen/zen.conf
+mkdir -p ~/.zcash
+echo "rpcuser=username" >> ~/.zcash/zcash.conf
+echo "rpcpassword=$(head -c 32 /dev/urandom | base64)" >> ~/.zcash/zcash.conf
 ```
 
 Finally you need to download the Z cryptographic keys (takes a while):
