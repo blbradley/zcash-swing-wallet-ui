@@ -67,7 +67,7 @@ public class StatusUpdateErrorReporter
 			lastReportedErrroTime = time;
 		}
 		
-		String settingsDirectory = ".ZENCashSwingWalletUI";
+		String settingsDirectory = ".ZCashSwingWalletUI";
 		
 		try
 		{
