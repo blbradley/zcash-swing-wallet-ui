@@ -133,7 +133,7 @@ public class OSUtil
 	{
 		// TODO: this way of finding the dir is JAR name dependent - tricky, may not work
 		// if program is repackaged as different JAR!
-		final String JAR_NAME = "ZENCashSwingWalletUI.jar";
+		final String JAR_NAME = "ZCashSwingWalletUI.jar";
 		String cp = System.getProperty("java.class.path");
 		if ((cp != null) && (cp.indexOf(File.pathSeparator) == -1) &&
 			(cp.endsWith(JAR_NAME)))
@@ -237,13 +237,13 @@ public class OSUtil
 	    
 	    if (os == OS_TYPE.MAC_OS)
 	    {
-	        dir = new File(userHome, "Library/Application Support/ZENCashSwingWalletUI");
+	        dir = new File(userHome, "Library/Application Support/ZCashSwingWalletUI");
 	    } else if (os == OS_TYPE.WINDOWS)
 		{
-			dir = new File(System.getenv("LOCALAPPDATA") + "\\ZENCashSwingWalletUI");
+			dir = new File(System.getenv("LOCALAPPDATA") + "\\ZCashSwingWalletUI");
 		} else
 	    {
-	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZENCashSwingWalletUI");
+	        dir = new File(userHome.getCanonicalPath() + File.separator + ".ZCashSwingWalletUI");
 	    }
 	    
 		if (!dir.exists())
