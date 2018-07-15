@@ -5,6 +5,10 @@
 This program provides a Graphical User Interface (GUI) for the ZCash client tools that acts as a wrapper and 
 presents the information in a user-friendly manner.
 
+## Care to donate?
+
+* ZEN: `znYES1X8ujiaAMEYYZhegNquXzjVkBGtCYm`
+
 ![Screenshot](https://github.com/blbradley/zcash-swing-wallet-ui/raw/master/docs/ZENCashWallet.png "Main Window")
 
 **This wallet is targeted at advanced users who understand the implications of running a full ZCash node on**
