@@ -9,7 +9,7 @@ presents the information in a user-friendly manner.
 
 * ZEN: `znYES1X8ujiaAMEYYZhegNquXzjVkBGtCYm`
 
-![Screenshot](https://github.com/blbradley/zcash-swing-wallet-ui/raw/master/docs/ZENCashWallet.png "Main Window")
+![Screenshot](https://github.com/blbradley/zcash-swing-wallet-ui/raw/master/docs/ZCashWallet.png "Main Window")
 
 **This wallet is targeted at advanced users who understand the implications of running a full ZCash node on**
 **the local machine, maintaining a full local copy of the blockchain, maintaining and backing up the**
