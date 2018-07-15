@@ -163,7 +163,7 @@
                                     </mapper>
                                 </data>
                                 <data>
-                                    <src>${project.build.directory}/deb/ZEN-icon.png</src>
+                                    <src>${project.build.directory}/deb/zcash-logo-square3.png</src>
                                     <type>file</type>
                                     <mapper>
                                         <type>perm</type>
