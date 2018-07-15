@@ -24,7 +24,7 @@ for Debian/Ubuntu (and similar) Linux systems.
 To setup the APT repository and install packages, using a terminal run the following commands 
 ```
 sudo apt-get update
-sudo apt-get install apt-transport-https lsb-release
+sudo apt-get install -y apt-transport-https lsb-release
 
 wget -qO - https://apt.z.cash/zcash.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://apt.z.cash/ jessie main" | sudo tee /etc/apt/sources.list.d/zcash.list
