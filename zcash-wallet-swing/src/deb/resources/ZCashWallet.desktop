@@ -8,6 +8,6 @@ Exec=zencash-desktop-gui-wallet
 Terminal=false
 X-MultipleArgs=false
 Type=Application
-Icon=/usr/lib/zcash-gui-wallet/ZEN-icon.png
+Icon=/usr/lib/zcash-gui-wallet/zcash-logo-square-small.png
 Categories=GNOME;Application;
 StartupNotify=true
