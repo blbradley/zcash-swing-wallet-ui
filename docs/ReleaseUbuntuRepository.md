@@ -30,7 +30,7 @@ wget -qO - https://apt.z.cash/zcash.asc | sudo apt-key add -
 echo "deb [arch=amd64] https://apt.z.cash/ jessie main" | sudo tee /etc/apt/sources.list.d/zcash.list
 
 wget -qO - http://zcash.coinsmith.co/repo/key.asc | sudo apt-key add -
-echo 'deb [arch=amd64] http://zcash.coinsmith.co/repo/ '$(lsb_release -cs)' main' | sudo tee --append /etc/apt/sources.list.d/zcash.list
+echo 'deb [arch=amd64] http://zcash.coinsmith.co/repo/ xenial main' | sudo tee --append /etc/apt/sources.list.d/zcash.list
 
 sudo apt-get update
 sudo apt-get install zcash zcash-desktop-gui-wallet
