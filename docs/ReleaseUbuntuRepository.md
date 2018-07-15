@@ -54,7 +54,7 @@ To launch the ZENCash Desktop GUI Wallet you can just search and click on it in 
 
 ...or alternatively, run the command `zencash-desktop-gui-wallet` from a terminal:
 ```
-zencash-desktop-gui-wallet
+zcash-desktop-gui-wallet
 ```
 
 ### Disclaimer
