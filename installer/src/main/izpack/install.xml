@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <installation version="5.0">
   <info>
-    <appname>ZencashOfficialSwingWalletUI</appname>
+    <appname>ZcashOfficialSwingWalletUI</appname>
     <appversion>0.83.2</appversion>
     <url>https://zencash.com</url>
     <authors>

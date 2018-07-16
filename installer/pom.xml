@@ -4,17 +4,17 @@
 
     <parent>
         <groupId>com.zencash</groupId>
-        <artifactId>ZENCashOfficialSwingWalletUI</artifactId>
+        <artifactId>ZCashOfficialSwingWalletUI</artifactId>
         <version>0.83.2-SNAPSHOT</version>
     </parent>
 
   <artifactId>installer</artifactId>
-  <name>Zencash Wallet Installer</name>
+  <name>Zcash Wallet Installer</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <staging.dir>${project.build.directory}/staging</staging.dir>
-    <installer-output-filename>zencash-wallet-installer</installer-output-filename>
+    <installer-output-filename>zcash-wallet-installer</installer-output-filename>
     <zen.project.url>https://github.com</zen.project.url>
     <zen.binaries.file.name.windows>ZencashOfficial/zen/releases/download/v2.0.11/Zen_Win_binaries_v2.0.11.zip</zen.binaries.file.name.windows>
     <izpack.version>5.0.6</izpack.version>
@@ -23,7 +23,7 @@
   <dependencies>
       <dependency>
           <groupId>com.zencash</groupId>
-          <artifactId>zencash-wallet-swing</artifactId>
+          <artifactId>zcash-wallet-swing</artifactId>
           <version>${project.version}</version>
       </dependency>
   </dependencies>
@@ -58,7 +58,7 @@
                                             <filtering>false</filtering>
                                         </resource>
                                         <resource>
-                                            <directory>../zencash-wallet-swing/src/deb/resources</directory>
+                                            <directory>../zcash-wallet-swing/src/deb/resources</directory>
                                             <includes>
                                                 <include>licences/*</include>
                                             </includes>
@@ -130,7 +130,7 @@
                               <overWriteReleases>true</overWriteReleases>
                               <overWriteSnapshots>true</overWriteSnapshots>
                               <overWriteIfNewer>true</overWriteIfNewer>
-                              <includeArtifactIds>zencash-wallet-swing,bitcoinj-core,sqlite-jdbc,minimal-json</includeArtifactIds>
+                              <includeArtifactIds>zcash-wallet-swing,bitcoinj-core,sqlite-jdbc,minimal-json</includeArtifactIds>
                            </configuration>
                         </execution>
                    </executions>
@@ -161,7 +161,7 @@
                    <dependencies>
                       <dependency>
                         <groupId>com.zencash</groupId>
-                        <artifactId>zencash-wallet-swing</artifactId>
+                        <artifactId>zcash-wallet-swing</artifactId>
                           <version>${project.version}</version>
                       </dependency>
                     </dependencies>
