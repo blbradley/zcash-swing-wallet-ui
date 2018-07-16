@@ -473,9 +473,8 @@ public class SendCashPanel
 		// ZClassic compatibility
 		if (!installationObserver.isOnTestNet())
 		{
-			if (!(destinationAddress.startsWith("zc") || 
-				  destinationAddress.startsWith("zn") ||
-				  destinationAddress.startsWith("zs")))
+			if (!(destinationAddress.startsWith("z") ||
+				  destinationAddress.startsWith("t")))
 			{
 				Object[] options = { "OK" };
 
