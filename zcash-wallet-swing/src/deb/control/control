@@ -1,5 +1,5 @@
 Package: zcash-desktop-gui-wallet
-Version: 0.83.2
+Version: 0.83.2-alpha3
 Section: misc
 Priority: low
 Architecture: all
