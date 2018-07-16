@@ -127,7 +127,7 @@ public class ZCashClientCaller
 		if ((zcashcli == null) || (!zcashcli.exists()))
 		{
 			throw new IOException(
-				"The ZENCash installation directory " + installDir + " needs to contain " +
+				"The ZCash installation directory " + installDir + " needs to contain " +
 				"the command line utilities zend and zen-cli. zen-cli is missing!");
 		}
 		
@@ -140,7 +140,7 @@ public class ZCashClientCaller
 		if (zcashd == null || (!zcashd.exists()))
 		{
 		    throw new IOException(
-		    	"The ZENCash command line utility " + zcashcli.getCanonicalPath() + 
+		    	"The ZCash command line utility " + zcashcli.getCanonicalPath() +
 		    	" was found, but zend was not found!");
 		}
 	}
@@ -641,14 +641,14 @@ public class ZCashClientCaller
 	
 	
 	/**
-	 * Sends ZEN from a source address to a destination address. The change is sent back to the source address.
+	 * Sends ZEC from a source address to a destination address. The change is sent back to the source address.
 	 * The amount of change is calculated based on the existing confirmed balance for the address (parameter).
 	 * This may not be 100% accurate if the blockchain is not synchronized.
 	 * 
 	 * @param from source address (T/Z)
 	 * @param to destination address (T/Z)
 	 * @param balance current confirmed balance of the source address
-	 * @param amount ZEN amount to send
+	 * @param amount ZEC amount to send
 	 * @param memo text memo to include in the transaction
 	 * @param transactionFee transaction see to include
 	 * 
