@@ -606,7 +606,7 @@ public class DashboardPanel
 			return;
 		}
 		
-		// Format double numbers - else sometimes we get exponential notation 1E-4 ZEN
+		// Format double numbers - else sometimes we get exponential notation 1E-4 ZEC
 		DecimalFormat df = new DecimalFormat("########0.00######");
 		
 		String transparentBalance = df.format(balance.transparentBalance);
@@ -629,7 +629,7 @@ public class DashboardPanel
 			DecimalFormat usdDF = new DecimalFormat("########0.00");
 			String formattedUSDVal = usdDF.format(usdBalance);
 			
-			// make sure the ZEN and USD are aligned
+			// make sure the ZEC and USD are aligned
 			int diff = totalUCBalance.length() - formattedUSDVal.length();
 			while (diff-- > 0)
 			{
@@ -800,7 +800,7 @@ public class DashboardPanel
 						long start = System.currentTimeMillis();
 						JsonObject exchangeData = ExchangeRatePanel.this.getExchangeDataFromRemoteService();
 						long end = System.currentTimeMillis();
-						Log.info("Gathering of ZEN Exchange data done in " + (end - start) + "ms." );
+						Log.info("Gathering of ZEC Exchange data done in " + (end - start) + "ms." );
 							
 						return exchangeData;
 					}
@@ -895,7 +895,7 @@ public class DashboardPanel
 		}
 		
 				
-		// Obtains the ZEN exchange data as a JsonObject
+		// Obtains the ZEC exchange data as a JsonObject
 		private JsonObject getExchangeDataFromRemoteService()
 		{
 			JsonObject data = new JsonObject();
