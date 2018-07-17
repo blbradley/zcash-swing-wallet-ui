@@ -7,6 +7,7 @@ presents the information in a user-friendly manner.
 
 ## Care to donate?
 
+* ZEC: `t1TTsnidBB6LwzWu2DrZXtnJ3us8uh4FZPP`
 * ZEN: `znYES1X8ujiaAMEYYZhegNquXzjVkBGtCYm`
 
 ![Screenshot](https://github.com/blbradley/zcash-swing-wallet-ui/raw/master/docs/ZCashWallet.png "Main Window")
