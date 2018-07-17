@@ -29,16 +29,13 @@
     <res id="LicencePanel.licence" src="@{main.basedir}/../LICENSE"/>
     <res id="HTMLHelloPanel.welcome" src="welcome.html"/>
     <res id="HTMLInfoPanel.welcome" src="welcome.html"/>
-    <res id="ZencashLogo" src="images/zencash-logo.png"/>
+    <res id="ZencashLogo" src="images/full-zcash-color.png"/>
 
     <res id="TargetPanel.dir.windows" src="TargetDirWindows.txt"/>
     <res id="packsLang.xml_eng" src="i18n/zencashPacksLang.xml_eng"/>
     <res id="CustomLangPack.xml_eng" src="i18n/customLangPack.xml_eng" />
 
     <res id="Installer.image.0" src=""/>
-    <res id="Installer.image.install_dir" src="images/left.2.png"/>
-    <res id="Installer.image.3" src="images/left.3.png"/>
-    <res id="Installer.image.6" src="images/left.6.png"/>
     <res id="JFrameIcon" src="images/JFrameIcon.png"/>
 
     <res id="customicons.xml" src="customicons.xml" />
@@ -46,8 +43,8 @@
   </resources>
   <variables>
     <variable name="InstallerFrame.logfilePath" value="Default"/>
-    <variable name="WELCOME_TEXT" value="Zencash Swing Wallet Installation"/>
-    <variable name="WELCOME_VERSION" value="Version: 0.82.9"/>
+    <variable name="WELCOME_TEXT" value="Zcash Swing Wallet Installation"/>
+    <variable name="WELCOME_VERSION" value="Version: 0.83.2"/>
     <variable name="WELCOME_BG_COLOR" value="#404B62"/>
     <variable name="WELCOME_TEXT_COLOR" value="#ffffff"/>
   </variables>
@@ -115,8 +112,8 @@
     </fileset>
     <fileset dir="@{staging.dir}/licences" targetdir="${INSTALL_PATH}/licences"/>
     </pack>
-    <pack name="Zen Binaries" preselected="yes" required="yes">
-          <description>Zencash Binaries</description>
+    <pack name="ZCash Binaries" preselected="yes" required="yes">
+          <description>Zcash Binaries</description>
           <fileset dir="@{staging.dir}/zen-win-binaries" targetdir="$INSTALL_PATH/app"/>
     </pack>
   </packs>
