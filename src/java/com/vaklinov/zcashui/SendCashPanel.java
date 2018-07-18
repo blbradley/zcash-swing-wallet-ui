@@ -883,10 +883,10 @@ public class SendCashPanel
 		    	// Open block explorer
 				Log.info("Transaction ID for block explorer is: " + TXID);
 				// TODO: code duplication with transactions table
-				String urlPrefix = "https://explorer.zensystem.io/tx/";
+                                String urlPrefix = "https://explorer.zcha.in/transactions/";
 				if (installationObserver.isOnTestNet())
 				{
-					urlPrefix = "https://explorer-testnet.zen-solutions.io/tx/";
+                                        urlPrefix = "https://explorer.testnet.z.cash/tx/";
 				}
 				Desktop.getDesktop().browse(new URL(urlPrefix + TXID).toURI());
 		    }

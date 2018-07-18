@@ -126,10 +126,10 @@ public class TransactionTable
 						
 						Log.info("Transaction ID for block explorer is: " + txID);
 						// https://explorer.zcha.in/transactions/<ID>
-						String urlPrefix = "https://explorer.zensystem.io/tx/";
+						String urlPrefix = "https://explorer.zcha.in/transactions/";
 						if (installationObserver.isOnTestNet())
 						{
-							urlPrefix = "https://explorer-testnet.zen-solutions.io/tx/";
+							urlPrefix = "https://explorer.testnet.z.cash/tx/";
 						}
 						
 						Desktop.getDesktop().browse(new URL(urlPrefix + txID).toURI());
