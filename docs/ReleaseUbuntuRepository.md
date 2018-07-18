@@ -45,6 +45,10 @@ echo "rpcpassword=$(head -c 32 /dev/urandom | base64)" >> ~/.zcash/zcash.conf
 Finally you need to download the Z cryptographic keys (takes a while):
 ```
 zcash-fetch-params
+
+# or for the testnet
+
+zcash-fetch-params --testnet
 ```
    
 ### Running the ZCash Desktop GUI Wallet on Linux
