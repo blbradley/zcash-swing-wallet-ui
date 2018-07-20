@@ -30,11 +30,9 @@ presents the information in a user-friendly manner.
 **they are considered outdated after 16 weeks and stop working. So they need to be updated to a newer version before this term expires.**
 **Users need to ensure they use an up-to-date version of the wallet (e.g. update the wallet every two months or so).**
 
-#### New/Experimental: [ZCash Desktop GUI Wallet packages for Debian/Ubuntu Linux](https://github.com/blbradley/zcash-swing-wallet-ui/blob/master/docs/ReleaseUbuntuRepository.md) are available
+## Download
 
-#### New/Experimental: [ZCash Desktop GUI Wallet for Mac OS](https://github.com/blbradley/zcash-swing-wallet-ui/blob/master/docs/Release_0.83.1.md) is available
-
-#### New/Experimental: [ZCash Desktop GUI Wallet for Windows](https://github.com/blbradley/zcash-swing-wallet-ui/blob/master/docs/Release_0.83.0.md) is available
+Use the [releases](https://github.com/blbradley/zcash-swing-wallet-ui/releases) page and get the latest version.
 
 #### Information on diagnosing some common problems may be found in this [troubleshooting guide](docs/TroubleshootingGuide.md).
 
