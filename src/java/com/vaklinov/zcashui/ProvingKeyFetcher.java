@@ -51,7 +51,6 @@ public class ProvingKeyFetcher {
     private static LanguageUtil langUtil = LanguageUtil.instance();
 
     public void fetchIfMissing(StartupProgressDialog parent) throws IOException {
-        langUtil = LanguageUtil.instance();
         try {
             verifyOrFetch(parent);
         } catch (InterruptedIOException iox) {
