@@ -34,7 +34,7 @@ public class ProvingKeyFetcher {
     private static final String SHA256 = "8bc20a7f013b2b58970cddd2e7ea028975c88ae7ceb9259a5344a16bc2c0eef7";
     private static final String pathURL = "https://zensystem.io/downloads/sprout-proving.key";
     // TODO: add backups
-    private LanguageUtil langUtil;
+    private static LanguageUtil langUtil = LanguageUtil.instance();
 
     public void fetchIfMissing(StartupProgressDialog parent) throws IOException {
         langUtil = LanguageUtil.instance();
@@ -77,7 +77,7 @@ public class ProvingKeyFetcher {
         InputStream is = ProvingKeyFetcher.class.getClassLoader().getResourceAsStream("keys/sprout-verifying.key");
         copy(is,fos);
         fos.close();
-        is = null;
+        is.close();
         
         File provingKeyFile = new File(zCashParams,"sprout-proving.key");
         provingKeyFile = provingKeyFile.getCanonicalFile();
@@ -108,24 +108,7 @@ public class ProvingKeyFetcher {
         
         parent.setProgressText(langUtil.getString("proving.key.fetcher.option.pane.verify.progress.text"));
         provingKeyFile.delete();
-        OutputStream os = new BufferedOutputStream(new FileOutputStream(provingKeyFile));
-        URL keyURL = new URL(pathURL);
-        URLConnection urlc = keyURL.openConnection();
-        urlc.setRequestProperty("User-Agent", "Wget/1.17.1 (linux-gnu)");        
-        
-        try 
-        {
-        	is = urlc.getInputStream();
-            ProgressMonitorInputStream pmis = new ProgressMonitorInputStream(parent, langUtil.getString("proving.key.fetcher.option.pane.verify.progress.monitor.text"), is);
-            pmis.getProgressMonitor().setMaximum(PROVING_KEY_SIZE);
-            pmis.getProgressMonitor().setMillisToPopup(10);
-            
-            copy(pmis,os);
-            os.close();
-        } finally 
-        {
-            try { if (is != null) is.close(); } catch (IOException ignore){}
-        }
+        fetch(pathURL, provingKeyFile, parent);
         parent.setProgressText(langUtil.getString("proving.key.fetcher.option.pane.verify.key.text"));
         if (!checkSHA256(provingKeyFile, parent)) 
         {
@@ -133,7 +116,7 @@ public class ProvingKeyFetcher {
             System.exit(-4);
         }
     }
-            
+
 
     private static void copy(InputStream is, OutputStream os) throws IOException {
         byte[] buf = new byte[0x1 << 13];
@@ -142,6 +125,22 @@ public class ProvingKeyFetcher {
             os.write(buf,0,read);
         }
         os.flush();
+    }
+
+    private static void fetch(String pathURL, File provingKeyFile, Component parent) throws IOException {
+        OutputStream os = new BufferedOutputStream(new FileOutputStream(provingKeyFile));
+        URL keyURL = new URL(pathURL);
+        URLConnection urlc = keyURL.openConnection();
+        urlc.setRequestProperty("User-Agent", "Wget/1.17.1 (linux-gnu)");
+
+        InputStream is = urlc.getInputStream();
+        ProgressMonitorInputStream pmis = new ProgressMonitorInputStream(parent, langUtil.getString("proving.key.fetcher.option.pane.verify.progress.monitor.text"), is);
+        pmis.getProgressMonitor().setMaximum(PROVING_KEY_SIZE);
+        pmis.getProgressMonitor().setMillisToPopup(10);
+
+        copy(pmis,os);
+        os.close();
+        is.close();
     }
     
     private static boolean checkSHA256(File provingKey, Component parent) throws IOException {
