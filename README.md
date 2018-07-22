@@ -5,6 +5,14 @@
 This program provides a Graphical User Interface (GUI) for the ZCash client tools that acts as a wrapper and 
 presents the information in a user-friendly manner.
 
+
+## Download
+
+Use the [releases](https://github.com/blbradley/zcash-swing-wallet-ui/releases) page and get the latest version.
+
+#### Information on diagnosing some common problems may be found in this [troubleshooting guide](docs/TroubleshootingGuide.md).
+
+
 ## Care to donate?
 
 * ZEC: `t1TTsnidBB6LwzWu2DrZXtnJ3us8uh4FZPP`
@@ -30,11 +38,6 @@ presents the information in a user-friendly manner.
 **they are considered outdated after 16 weeks and stop working. So they need to be updated to a newer version before this term expires.**
 **Users need to ensure they use an up-to-date version of the wallet (e.g. update the wallet every two months or so).**
 
-## Download
-
-Use the [releases](https://github.com/blbradley/zcash-swing-wallet-ui/releases) page and get the latest version.
-
-#### Information on diagnosing some common problems may be found in this [troubleshooting guide](docs/TroubleshootingGuide.md).
 
 ## Building, installing and running the Wallet GUI
 
