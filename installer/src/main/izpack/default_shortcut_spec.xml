@@ -2,7 +2,6 @@
                   xmlns:izpack="http://izpack.org/schema/shortcuts"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://izpack.org/schema/shortcuts http://izpack.org/schema/5.0/izpack-shortcuts-5.0.xsd">
-    <shortcuts>
         <programGroup defaultName="Zen Team" location="applications"/>
         <lateShortcutInstall/>
         <skipIfNotSupported/>
@@ -22,5 +21,4 @@
                 startup="no">
         <createForPack name="Core"/>
         </shortcut>
-    </shortcuts>
 </izpack:shortcuts>

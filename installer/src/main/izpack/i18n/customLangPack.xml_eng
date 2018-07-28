@@ -1,4 +1,7 @@
-<langpack>
+<izpack:langpack version="5.0"
+                 xmlns:izpack="http://izpack.org/schema/langpack"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://izpack.org/schema/langpack http://izpack.org/schema/5.0/izpack-langpack-5.0.xsd">
     <str id="installer.reversetitle" txt="$APP_NAME $APP_VER"/>
     <str id="installation.panel.header" txt="ZCash Desktop GUI Wallet binary release 0.83.2 for Windows"/>
-</langpack>
+</izpack:langpack>
