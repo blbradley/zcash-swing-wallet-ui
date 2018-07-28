@@ -17,7 +17,7 @@
     <installer-output-filename>zcash-wallet-installer</installer-output-filename>
     <zen.project.url>https://github.com</zen.project.url>
     <zen.binaries.file.name.windows>blbradley/zcash/releases/download/v1.1.2-win/zcash-1.1.2-win.zip</zen.binaries.file.name.windows>
-    <izpack.version>5.0.6</izpack.version>
+    <izpack.version>5.0.7</izpack.version>
   </properties>
 
   <dependencies>
