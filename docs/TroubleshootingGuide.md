@@ -18,7 +18,7 @@ Linux:    ~/.zcash/debug.log,
 Windows:  %APPDATA%/ZCash/debug.log
 Mac OS:   ~/Library/Application Support/ZCash/debug.log
  ```
-The log files are the first place too look for clues as to the nature of problem.
+The log files are the first place to look for clues as to the nature of problem.
 
 ### Common Problem 1 - wallet fails during start up
 
@@ -34,7 +34,7 @@ works in 90%+ of cases is to start `zcashd` manually with a `-reindex` option fr
 ```
 zcashd -reindex
 ```
-For non-technical users here is some information on how to open a terminal on [Windows](https://www.lifewire.com/how-to-open-command-prompt-2618089) and [Mac OS](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac). The full command on Mac OS is:
+For non-technical users here is some information on how to open a terminal on [Windows](https://www.lifewire.com/how-to-open-command-prompt-2618089) and [macOS](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac). The full command on macOS is:
 ```
 /Applications/ZCashWallet.app/Contents/Java/zcashd -reindex
 ```

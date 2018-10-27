@@ -38,7 +38,6 @@ Use the [releases](https://github.com/blbradley/zcash-swing-wallet-ui/releases) 
 **they are considered outdated after 16 weeks and stop working. So they need to be updated to a newer version before this term expires.**
 **Users need to ensure they use an up-to-date version of the wallet (e.g. update the wallet every two months or so).**
 
-
 ## Building, installing and running the Wallet GUI
 
 Before installing the Desktop GUI Wallet you need to have ZCash up and running. The following 
