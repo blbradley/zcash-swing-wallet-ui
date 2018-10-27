@@ -44,6 +44,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -151,7 +152,7 @@ public class ZCashUI
         		    addresses = new AddressesPanel(this, clientCaller, errorReporter, labelStorage, installationObserver));
         tabs.addTab(langUtil.getString("main.frame.tab.send.cash.title"),
         		    new ImageIcon(cl.getResource("images/send.png")),
-        		    sendPanel = new SendCashPanel(clientCaller, errorReporter, installationObserver, backupTracker));
+        		    sendPanel = new SendCashPanel(clientCaller, errorReporter, installationObserver, backupTracker, labelStorage));
         tabs.addTab(langUtil.getString("main.frame.tab.address.book.title"),
     		        new ImageIcon(cl.getResource("images/address-book.png")),
     		        addressBookPanel = new AddressBookPanel(sendPanel, tabs, labelStorage));
@@ -737,7 +738,8 @@ public class ZCashUI
 			Log.info("ZEC configuration file " + zenConfigFile.getCanonicalPath() +
 					 " does not exist. It will be created with default settings.");
 			
-			Random r = new Random(System.currentTimeMillis());
+			Random r = new Random(System.nanoTime());
+			SecureRandom r2 = new SecureRandom(); // Improved randomness
 			
 			PrintStream configOut = new PrintStream(new FileOutputStream(zenConfigFile));
 			
@@ -751,10 +753,10 @@ public class ZCashUI
 			configOut.println("#############################################################################");
 			configOut.println("");
 			configOut.println("# The rpcuser/rpcpassword are used for the local call to zcashd");
-			configOut.println("rpcuser=User" + Math.abs(r.nextInt()));
+			configOut.println("rpcuser=User" + Math.abs(r2.nextInt()));
 			configOut.println("rpcpassword=Pass" + Math.abs(r.nextInt()) + "" + 
-			                                       Math.abs(r.nextInt()) + "" + 
-					                               Math.abs(r.nextInt()));
+			                                       Math.abs(r2.nextInt()) + "" + 
+					                               Math.abs(r2.nextInt()));
 			configOut.println("");
 			
 			/*
