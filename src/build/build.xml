@@ -29,6 +29,7 @@
 -->
 <project name="ZCashSwingWalletUI" basedir="../.." default="buildit">
 	
+    <property name="version" value="0.83.0-SNAPSHOT"/>
     <property name="zcash.swing.module.dir"     value="${basedir}/zcash-wallet-swing"/>
     <property name="src.dir"     value="src"/>
 	<property name="lib.dir"     value="lib"/>
@@ -114,9 +115,15 @@
     </target>
 	
     <target name="ubuntuPackage" depends="jar,copyothers">	
-    	<mkdir dir="${ubuntu.package.dir}"/>
-	    <deb destfile="${ubuntu.package.dir}/zcash-desktop-gui-wallet_0.83.2-alpha7_all.deb"
-	    	 control="${deb.dir}/control"
+      <copy todir="${build.dir}/control">
+        <fileset dir="${deb.dir}/control"/>
+        <filterset begintoken="[[" endtoken="]]">
+          <filter token="version" value="${version}"/>
+          <filter token="name" value="${ant.project.name}"/>
+        </filterset>
+      </copy>
+	    <deb destfile="${ubuntu.package.dir}/zcash-desktop-gui-wallet_${version}_all.deb"
+	         control="${build.dir}/control"
 	    	 verbose="true">
 	    	
 	      <data src="${jar.dir}/${ant.project.name}.jar" type="file">
