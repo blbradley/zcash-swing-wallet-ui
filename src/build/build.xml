@@ -131,7 +131,7 @@
       <copy todir="${build.dir}/control">
         <fileset dir="${deb.dir}/control"/>
         <filterset begintoken="[[" endtoken="]]">
-          <filter token="version" value="${version}"/>
+          <filter token="version" value="${package.version}"/>
           <filter token="name" value="${ant.project.name}"/>
         </filterset>
       </copy>
