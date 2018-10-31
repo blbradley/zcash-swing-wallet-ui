@@ -1,5 +1,6 @@
 language: java
 before_install:
+  - echo "personal-digest-preferences SHA512 SHA256 SHA384 SHA224" >> ~/.gnupg/gpg.conf
   - openssl aes-256-cbc -K $encrypted_4d9724976ba6_key -iv $encrypted_4d9724976ba6_iv
     -in key.gpg.enc -out key.gpg -d
   - gpg --import key.gpg
