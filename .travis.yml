@@ -1,2 +1,18 @@
 language: java
+before_install:
+  - sudo apt-get install -y reprepro
+
 script: ant -buildfile ./src/build/build.xml
+
+before_deploy:
+  - git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+  - git fetch --unshallow origin gh-pages
+  - ./repo.sh
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    all_branches: true
