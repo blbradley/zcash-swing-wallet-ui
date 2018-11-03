@@ -14,6 +14,7 @@ deploy:
   package_glob: "build/ubuntu-package/*.deb"
   skip_cleanup: true
   on:
-    branch: apt-packagecloud
+    condition: $CONFIG = debug
+    branch: master
   token:
     secure: rni0RqjtMHtgaQ+norTz5x9cYvZ8Ie9b5DN8Gdl0hrVoxDDroiGwfjnyc4jHi5wttYgDLy3FENUAbbw/hVdsiCUGHpMNtAtxA/ggv2skB45BVdumvYs29+0uvKyc0vz1Yp6IIIc57hJ8LnoQpqf5gZGveMdawLPgigWc97d2CQukDwAreVtLg1t3SfcoTxLsKimyHejcnwfvJlD0H7U59bvSfP+3eenhres4KG9y8aqxNlPKkPo9lISGs7am/u9JAsP6hlbBeBepVRQ2beKQbFBRFQKvxW+wbH8HtpZP1ItSB1eh8UDZ6bgd1wJ/+01g7MBj/rHjPHcU12wOEZDUuoCOrc24ec4JvK2EjhlEgR3VfuzC3BrKhiaryEkADn6MvX0rkEwGGrOHZ9ZmvVz161CgJHea+20zkNMMzeY6gZ0DMjiHnefaZMHZYviJiQA3LA/dBLItPouO5FqFDDS5h1IQfASUVMdxC8Y46N6iZq374V6iuv1weqC5ENS1SjOmUCkb3sXJofJaoRpdKZplLJ8zQk6MdR+FD5f9amzXGLBD9orP7VSbangW9iIa8jzkK7GoDaKDDmjmHgF0zdoxT0+jAOSYKDIMyXMDa9d6PUft/4/Xvp8Ws3GbU/Qf/8VRJyKzVqCrkb1mKu0VmAGpQe7r+TFm2d4QeoSVF9EB1IQ=
