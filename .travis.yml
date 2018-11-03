@@ -1,9 +1,13 @@
 language: java
 
-script: ant -buildfile ./src/build/build.xml
+env:
+  - CONFIG=debug
+  - CONFIG=release
+
+script: ant -buildfile ./src/build/build.xml $CONFIG
 
 deploy:
-  provider: packagecloud
+- provider: packagecloud
   username: blbradley
   repository: zcash-wallet-dev
   dist: ubuntu/xenial
