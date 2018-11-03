@@ -13,7 +13,7 @@ deploy:
   username: blbradley
   repository: zcash-wallet-dev
   dist: ubuntu/xenial
-  package_glob: "**/*.deb"
+  package_glob: "build/ubuntu-package/*.deb"
   skip_cleanup: true
   on:
     branch: apt-packagecloud
