@@ -1,0 +1,11 @@
+image: ubuntu
+
+build_script:
+  - ant -buildfile ./src/build/build.xml
+
+artifacts:
+  - path: 'build/jars/ZCashSwingWalletUI*.jar'
+    name: JARs
+
+  - path: '*.deb'
+    name: Debian package
