@@ -10,5 +10,5 @@ artifacts:
   - path: 'build/jars/ZCashSwingWalletUI*.jar'
     name: JARs
 
-  - path: '*.deb'
+  - path: 'build/ubuntu-package/*.deb'
     name: Debian package
