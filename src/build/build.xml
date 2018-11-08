@@ -91,6 +91,7 @@
     <target name="compile" depends="clean">
         <mkdir dir="${classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${debug}">
+		<compilerarg line="-bootclasspath /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar" />
                 <compilerarg line="-source 1.8 -target 1.8" />
                 <classpath refid="main-classpath"/>
         </javac>
@@ -200,14 +201,14 @@
 	</target>
 	
     <target name="debug" depends="clean,-set-debug-mode,jar,copyothers,ubuntuPackage">
-    	<echo message="Built ZCash Desktop GUI Wallet with JDK ${ant.java.version} and debug symbols"/>
+    	<echo message="Built ZCash Desktop GUI Wallet with debug symbols"/>
     	<!-- Final cleanup -->
     	<delete dir="${classes.dir}"/>
     	<delete dir="${temp.dir}"/>
     </target>
 
     <target name="release" depends="clean,-set-release-mode,jar,copyothers,ubuntuPackage">
-    	<echo message="Built ZCash Desktop GUI Wallet with JDK ${ant.java.version}"/>
+    	<echo message="Built ZCash Desktop GUI Wallet"/>
     </target>
 
 </project>
