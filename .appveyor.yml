@@ -11,6 +11,7 @@ configuration: debug
 
 build_script:
   - ant -buildfile ./src/build/build.xml
+  - mvn -P installer clean package
 
 artifacts:
   - path: 'build/jars/ZCashSwingWalletUI*.jar'
@@ -18,6 +19,9 @@ artifacts:
 
   - path: 'build/ubuntu-package/*.deb'
     name: Debian package
+
+  - path: 'installer/target/zcash-wallet-installer.exe'
+    name: Windows installer
 
 for:
 -
