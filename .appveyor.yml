@@ -18,7 +18,7 @@ artifacts:
   - path: 'build/ubuntu-package/*.deb'
     name: Debian package
 
-deploy_script:
-  - if [ "APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH" == "appveyor-build-artifacts" ]; then
-  -   package_cloud push blbradley/zcash-wallet-dev/ubuntu/xenial build/ubuntu-package/*.deb
-  - fi
+deploy_script: |
+  if [ "$APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH" == "appveyor-build-artifacts" ]; then
+    package_cloud push blbradley/zcash-wallet-dev/ubuntu/xenial build/ubuntu-package/*.deb
+  fi
