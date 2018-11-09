@@ -19,6 +19,7 @@ artifacts:
   - path: 'build/ubuntu-package/*.deb'
     name: Debian package
 
+for:
 -
   branches:
     only:
