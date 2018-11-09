@@ -16,7 +16,7 @@
     <staging.dir>${project.build.directory}/staging</staging.dir>
     <installer-output-filename>zcash-wallet-installer</installer-output-filename>
     <zen.project.url>https://github.com</zen.project.url>
-    <zen.binaries.file.name.windows>blbradley/zcash/releases/download/v1.1.2-win/zcash-1.1.2-win-koljenovic.zip</zen.binaries.file.name.windows>
+    <zen.binaries.file.name.windows>blbradley/zcash/releases/download/v2.0.1-win/zcash-v2.0.1-win.zip</zen.binaries.file.name.windows>
     <izpack.version>5.0.7</izpack.version>
   </properties>
 
