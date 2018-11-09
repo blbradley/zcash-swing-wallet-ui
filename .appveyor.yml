@@ -1,7 +1,12 @@
 image: ubuntu
 
+environment:
+  PACKAGECLOUD_TOKEN:
+    secure: xx7HMgFYZZw9TVWrcdrPG0a4t+M7KGBs/A9ayG7UJjjuM61HyFNE7jjXhvSlqeoFNFYII3wk8oYfB3T8OGgtvQ==
+
 install:
   - java -version
+  - gem install package_cloud
 
 build_script:
   - ant -buildfile ./src/build/build.xml
@@ -12,3 +17,8 @@ artifacts:
 
   - path: 'build/ubuntu-package/*.deb'
     name: Debian package
+
+deploy_script:
+  - if [ "APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH" == "appveyor-build-artifacts" ]; then
+  -   package_cloud push blbradley/zcash-wallet-dev/ubuntu/xenial build/ubuntu-package/*.deb
+  - fi
