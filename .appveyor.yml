@@ -23,7 +23,7 @@ for:
 -
   branches:
     only:
-      - appveyor-build-artifacts
+      - master
 
   deploy_script:
     - gem install package_cloud
