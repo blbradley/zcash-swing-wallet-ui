@@ -6,7 +6,8 @@ environment:
 
 install:
   - java -version
-  - gem install package_cloud
+
+configuration: debug
 
 build_script:
   - ant -buildfile ./src/build/build.xml
@@ -18,7 +19,11 @@ artifacts:
   - path: 'build/ubuntu-package/*.deb'
     name: Debian package
 
-deploy_script: |
-  if [ "$APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH" == "appveyor-build-artifacts" ]; then
-    package_cloud push blbradley/zcash-wallet-dev/ubuntu/xenial build/ubuntu-package/*.deb
-  fi
+-
+  branches:
+    only:
+      - appveyor-build-artifacts
+
+  deploy_script:
+    - gem install package_cloud
+    - package_cloud push blbradley/zcash-wallet-dev/ubuntu/xenial build/ubuntu-package/*.deb
