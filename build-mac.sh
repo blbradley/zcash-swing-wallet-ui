@@ -12,4 +12,4 @@ wget https://github.com/kozyilmaz/zcash-apple/releases/download/v2.0.1a/zcash-ma
 shasum -a 256 -c zcash-macos-v2.0.1a.tar.bz2.hash
 tar -xvf zcash-macos-v2.0.1a.tar.bz2
 
-cp zcash-macos-v2.0.1a/usr/local/bin/zcash* ZCashSwingWalletUI.app/Contents
+cp zcash-macos-v2.0.1a/usr/local/bin/zcash* ZcashSwingWalletUI.app/Contents
