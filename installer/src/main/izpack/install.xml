@@ -4,12 +4,13 @@
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:schemaLocation="http://izpack.org/schema/installation http://izpack.org/schema/5.0/izpack-installation-5.0.xsd">
   <info>
-    <appname>ZcashOfficialSwingWalletUI</appname>
-    <appversion>0.83.2</appversion>
-    <url>https://zencash.com</url>
+    <appname>ZcashSwingWalletUI</appname>
+    <appversion>0.84.0</appversion>
+    <url>https://github.com/blbradley/zcash-swing-wallet-ui</url>
     <authors>
         <author name="Ivan Vaklinov" email="ivan@vaklinov.com"/>
         <author name="Armand Ballaci" email="aballaci@gmail.com"/>
+	<author name="Brandon Bradley" email="bradleytastic@gmail.com"/>
     </authors>
   </info>
   <guiprefs height="400" resizable="no" width="640">
@@ -47,7 +48,7 @@
   <variables>
     <variable name="InstallerFrame.logfilePath" value="Default"/>
     <variable name="WELCOME_TEXT" value="Zcash Swing Wallet Installation"/>
-    <variable name="WELCOME_VERSION" value="Version: 0.83.2"/>
+    <variable name="WELCOME_VERSION" value="Version: 0.84.0"/>
     <variable name="WELCOME_BG_COLOR" value="#404B62"/>
     <variable name="WELCOME_TEXT_COLOR" value="#ffffff"/>
   </variables>

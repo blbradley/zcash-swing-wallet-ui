@@ -6,7 +6,7 @@
 
     <groupId>com.zencash</groupId>
     <artifactId>ZCashOfficialSwingWalletUI</artifactId>
-    <version>0.83.2-SNAPSHOT</version>
+    <version>0.84.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ZCash Swing Wallet UI</name>
 
@@ -111,28 +111,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
-    <profiles>
-        <profile>
-            <id>java9</id>
-            <activation>
-                <jdk>9</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <!-- target Java 9 -->
-                    <plugin>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <configuration>
-                            <!-- fork compilation and use the specified executable -->
-                            <fork>true</fork>
-                            <executable>javac9</executable>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
