@@ -12,6 +12,7 @@ configuration: debug
 build_script:
   - ant -buildfile ./src/build/build.xml
   - mvn -P installer clean package
+  - bash ./build-mac.sh
 
 artifacts:
   - path: 'build/jars/ZCashSwingWalletUI*.jar'
@@ -22,6 +23,9 @@ artifacts:
 
   - path: 'installer/target/zcash-wallet-installer.exe'
     name: Windows installer
+
+  - path: 'ZcashSwingWalletUI.app'
+    name: MacOS app
 
 for:
 -
