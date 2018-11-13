@@ -35,6 +35,16 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: release-0.84
+  - provider: GitHub
+    artifact: installer/target/zcash-wallet-installer.exe
+    auth_token: $GITHUB_TOKEN
+    on:
+      branch: release-0.84
+  - provider: GitHub
+    artifact: 'build/ubuntu-package/*.deb'
+    auth_token: $GITHUB_TOKEN
+    on:
+      branch: release-0.84
 
 for:
 -
