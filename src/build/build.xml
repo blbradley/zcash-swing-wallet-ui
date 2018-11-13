@@ -27,8 +27,9 @@
  * THE SOFTWARE.                                    
  *
 -->
-<project name="ZCashSwingWalletUI" basedir="../.." default="buildit">
+<project name="ZcashSwingWalletUI" basedir="../.." default="debug">
 	
+    <property name="version" value="0.84.0-SNAPSHOT"/>
     <property name="zcash.swing.module.dir"     value="${basedir}/zcash-wallet-swing"/>
     <property name="src.dir"     value="src"/>
 	<property name="lib.dir"     value="lib"/>
@@ -63,10 +64,6 @@
 	    <os family="unix" />
 	</condition>
 	
-    <condition property="isJava9">
-	    <equals arg1="${ant.java.version}" arg2="9" />
-    </condition>	
-	
     <!-- TARGETS -->
 	
     <target name="clean">
@@ -83,22 +80,24 @@
     	</copy>
     </target>
 
-    <target name="compileJDK9" depends="clean" if="isJava9">
-        <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="on">
-        	<compilerarg line="--add-modules java.xml.bind" />
-        	<classpath refid="main-classpath"/>
-        </javac>
+    <target name="-set-debug-mode">
+        <property name="debug" value="on" />
     </target>
-	
-    <target name="compile" depends="clean" unless="isJava9">
+
+    <target name="-set-release-mode">
+        <property name="debug" value="off" />
+    </target>
+
+    <target name="compile" depends="clean">
         <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="on">
-        	<classpath refid="main-classpath"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${debug}">
+		<compilerarg line="-bootclasspath /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar" />
+                <compilerarg line="-source 1.8 -target 1.8" />
+                <classpath refid="main-classpath"/>
         </javac>
     </target>
 
-    <target name="jar" depends="compile,compileJDK9,copyResources">
+    <target name="jar" depends="compile,copyResources">
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/${ant.project.name}.jar" 
         	 basedir="${classes.dir}"
@@ -114,9 +113,20 @@
     </target>
 	
     <target name="ubuntuPackage" depends="jar,copyothers">	
-    	<mkdir dir="${ubuntu.package.dir}"/>
-	    <deb destfile="${ubuntu.package.dir}/zcash-desktop-gui-wallet_0.83.2-alpha7_all.deb"
-	    	 control="${deb.dir}/control"
+        <tstamp />
+    	<echo message="$${debug}: ${debug}" />
+        <condition property="package.version" value="${version}" else="${version}-${DSTAMP}${TSTAMP}">
+            <equals arg1="${debug}" arg2="off"/>
+        </condition>
+      <copy todir="${build.dir}/control">
+        <fileset dir="${deb.dir}/control"/>
+        <filterset begintoken="[[" endtoken="]]">
+          <filter token="version" value="${package.version}"/>
+          <filter token="name" value="${ant.project.name}"/>
+        </filterset>
+      </copy>
+	    <deb destfile="${ubuntu.package.dir}/zcash-desktop-gui-wallet_${package.version}_all.deb"
+	         control="${build.dir}/control"
 	    	 verbose="true">
 	    	
 	      <data src="${jar.dir}/${ant.project.name}.jar" type="file">
@@ -190,12 +200,16 @@
 		-->
 	</target>
 	
-    <target name="buildit" depends="clean,jar,copyothers,ubuntuPackage">
-    	<echo message="Built ZCash Desktop GUI Wallet with JDK ${ant.java.version}"/>
+    <target name="debug" depends="clean,-set-debug-mode,jar,copyothers,ubuntuPackage">
+        <echo message="Built Zcash Desktop GUI Wallet with debug symbols"/>
     	<!-- Final cleanup -->
     	<delete dir="${classes.dir}"/>
     	<delete dir="${temp.dir}"/>
-	</target>
+    </target>
+
+    <target name="release" depends="clean,-set-release-mode,jar,copyothers,ubuntuPackage">
+        <echo message="Built Zcash Desktop GUI Wallet"/>
+    </target>
 
 </project>
 

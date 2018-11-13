@@ -87,7 +87,6 @@ public class ProvingKeyFetcher {
         ZCashInstallationObserver installationObserver = new ZCashInstallationObserver(OSUtil.getProgramDirectory());
 
         List<String> localparamfiles = new ArrayList<>();
-        localparamfiles.add("sprout-verifying.key");
 
         if (installationObserver.isOnTestNet()) {
             localparamfiles.add("sapling-spend-testnet.params");
@@ -113,8 +112,33 @@ public class ProvingKeyFetcher {
                 "sprout-proving.key",
                 910173851,
                 "8bc20a7f013b2b58970cddd2e7ea028975c88ae7ceb9259a5344a16bc2c0eef7",
-                "https://zensystem.io/downloads/sprout-proving.key"
+                "https://z.cash/downloads/sprout-proving.key"
         ));
+        remoteparamfiles.add(new ExpectedFile(
+                "sprout-verifying.key",
+                1449,
+                "4bd498dae0aacfd8e98dc306338d017d9c08dd0918ead18172bd0aec2fc5df82",
+                "https://z.cash/downloads/sprout-verifying.key"
+        ));
+        remoteparamfiles.add(new ExpectedFile(
+                "sapling-spend.params",
+                47958396,
+                "8e48ffd23abb3a5fd9c5589204f32d9c31285a04b78096ba40a79b75677efc13",
+                "https://z.cash/downloads/sapling-spend.params"
+        ));
+        remoteparamfiles.add(new ExpectedFile(
+                "sapling-output.params",
+                3592860,
+                "2f0ebbcbb9bb0bcffe95a397e7eba89c29eb4dde6191c339db88570e3f3fb0e4",
+                "https://z.cash/downloads/sapling-output.params"
+        ));
+        remoteparamfiles.add(new ExpectedFile(
+                "sprout-groth16.params",
+                725523612,
+                "b685d700c60328498fbde589c8c7c484c722b788b265b72af448a5bf0ee55b50",
+                "https://z.cash/downloads/sprout-groth16.params"
+        ));
+
         if (installationObserver.isOnTestNet()) {
             remoteparamfiles.add(new ExpectedFile(
                     "sprout-groth16-testnet.params",

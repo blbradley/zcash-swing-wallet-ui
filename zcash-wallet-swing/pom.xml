@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.zencash</groupId>
         <artifactId>ZCashOfficialSwingWalletUI</artifactId>
-        <version>0.83.2-SNAPSHOT</version>
+        <version>0.84.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>zcash-wallet-swing</artifactId>
@@ -50,6 +50,14 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
