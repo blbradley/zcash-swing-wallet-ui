@@ -27,7 +27,7 @@
  * THE SOFTWARE.                                    
  *
 -->
-<project name="ZCashSwingWalletUI" basedir="../.." default="debug">
+<project name="ZcashSwingWalletUI" basedir="../.." default="debug">
 	
     <property name="version" value="0.84.0-SNAPSHOT"/>
     <property name="zcash.swing.module.dir"     value="${basedir}/zcash-wallet-swing"/>
@@ -201,14 +201,14 @@
 	</target>
 	
     <target name="debug" depends="clean,-set-debug-mode,jar,copyothers,ubuntuPackage">
-    	<echo message="Built ZCash Desktop GUI Wallet with debug symbols"/>
+        <echo message="Built Zcash Desktop GUI Wallet with debug symbols"/>
     	<!-- Final cleanup -->
     	<delete dir="${classes.dir}"/>
     	<delete dir="${temp.dir}"/>
     </target>
 
     <target name="release" depends="clean,-set-release-mode,jar,copyothers,ubuntuPackage">
-    	<echo message="Built ZCash Desktop GUI Wallet"/>
+        <echo message="Built Zcash Desktop GUI Wallet"/>
     </target>
 
 </project>
