@@ -10,10 +10,12 @@ environment:
 install:
   - java -version
 
-configuration: debug
+configuration:
+  - debug
+  - release
 
 build_script:
-  - ant -buildfile ./src/build/build.xml
+  - ant -buildfile ./src/build/build.xml $CONFIGURATION
   - mvn -P installer clean package
   - bash ./build-mac.sh
 
@@ -37,18 +39,21 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
+      configuration: release
   - provider: GitHub
     release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: installer/target/zcash-wallet-installer.exe
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
+      configuration: release
   - provider: GitHub
     release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: /build\/ubuntu-package\/.*\.deb/
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
+      configuration: release
 
 for:
 -
