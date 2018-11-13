@@ -30,16 +30,18 @@ artifacts:
   - path: 'build/mac'
     name: ZcashSwingWalletMac
 
+deploy:
+  - provider: GitHub
+    artifact: build/mac/ZcashSwingWalletMac.zip
+    token: $GITHUB_TOKEN
+    on:
+      branch: release-0.84
+
 for:
 -
   branches:
     only:
-      - release-0.84
-
-  deploy:
-    - provider: GitHub
-      artifact: build/mac/ZcashSwingWalletMac.zip
-      token: $GITHUB_TOKEN
+      - develop
 
   deploy_script:
     - gem install package_cloud
