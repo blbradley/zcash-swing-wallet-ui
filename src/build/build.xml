@@ -29,7 +29,7 @@
 -->
 <project name="ZcashSwingWalletUI" basedir="../.." default="debug">
 	
-    <property name="version" value="0.84.0"/>
+    <property name="version" value="0.84.1-SNAPSHOT"/>
     <property name="zcash.swing.module.dir"     value="${basedir}/zcash-wallet-swing"/>
     <property name="src.dir"     value="src"/>
 	<property name="lib.dir"     value="lib"/>
