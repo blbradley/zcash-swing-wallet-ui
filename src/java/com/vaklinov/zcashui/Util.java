@@ -30,7 +30,9 @@ package com.vaklinov.zcashui;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.RandomAccessFile;
 import java.io.Reader;
@@ -40,7 +42,9 @@ import java.lang.reflect.Method;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
@@ -105,7 +109,7 @@ public class Util
 	}
 	
 	
-	// Turns a 1.0.7+ error message to a an old JSOn style message
+	// Turns a 1.0.7+ error message to an old JSON style message
 	// info - new style error message
 	public static JsonObject getJsonErrorMessage(String info)
 	    throws IOException
@@ -131,7 +135,7 @@ public class Util
 	 * Escapes a text value to a form suitable to be displayed in HTML content. Important control
 	 * characters are replaced with entities.
 	 * 
-	 * @param inputValue th value to escape
+	 * @param inputValue the value to escape
 	 * 
 	 * @return the "safe" value to display.
 	 */
@@ -349,7 +353,7 @@ public class Util
 	
 	
 	// zc/zt - mainnet and testnet
-	// TODO: We need a much more precise criterion to distinguish T/Z adresses;
+	// TODO: We need a much more precise criterion to distinguish T/Z addresses;
 	public static boolean isZAddress(String address)
 	{
 		return (address != null) && 
@@ -359,7 +363,7 @@ public class Util
 	
 	
 	/**
-	 * Delets a directory and all of its subdirectories.
+	 * Deletes a directory and all of its subdirectories.
 	 * 
 	 * @param dir directory to delete.
 	 * 
@@ -444,7 +448,7 @@ public class Util
 
 	
 	/**
-	 * Check if a string is numeric (log int)
+	 * Check if a string is numeric (long int)
 	 * 
 	 * @param s string to check
 	 * 
@@ -467,4 +471,62 @@ public class Util
 		
 		return true;
 	}
+		
+	
+	/**
+	 * Loads the zcashd parameters from file zcashd-cmd-options.conf. 
+	 * 
+	 * @param onlyMeaningfulLines if true, only the essential lines are loaded (not comment/empty ones).
+	 * 
+	 * @return an array that represents the custom parameters of zcashd to use to start it.
+	 * 
+	 * @throws IOException
+	 */
+	public static List<String> loadZendParameters(boolean onlyMeaningfulLines)
+		throws IOException
+	{
+    	String settingsDir = OSUtil.getSettingsDirectory();
+    	File dir = new File(settingsDir);
+		File zendOptionsFile = new File(dir, "zcashd-cmd-options.conf");
+		if (!zendOptionsFile.exists())
+		{
+			Log.info("zcashd command line options configuration file zcashd-cmd-options.conf " + 
+					 " does not exist. This is not expected!");
+			return new ArrayList<String>();
+		}
+		
+		List<String> options = new ArrayList<String>();
+		LineNumberReader r = null;
+		try
+		{
+			r = new LineNumberReader(new InputStreamReader(new FileInputStream(zendOptionsFile), "UTF-8"));
+			String line;
+			while ((line = r.readLine()) != null)
+			{
+				line = line.trim();
+				
+				if (onlyMeaningfulLines && (line.length() <= 0))
+				{
+					continue;
+				}
+				
+				if (onlyMeaningfulLines && line.startsWith("#"))
+				{
+					continue;
+				}
+				
+				options.add(line);
+			}
+			
+		} finally
+		{
+			if (r != null)
+			{
+				r.close();
+			}
+		}
+		
+		return options;
+	}
+
 }

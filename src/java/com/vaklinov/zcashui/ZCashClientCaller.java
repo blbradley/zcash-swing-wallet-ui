@@ -30,7 +30,10 @@ package com.vaklinov.zcashui;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.StringReader;
 import java.math.BigDecimal;
@@ -128,7 +131,7 @@ public class ZCashClientCaller
 		{
 			throw new IOException(
 				"The ZCash installation directory " + installDir + " needs to contain " +
-				"the command line utilities zend and zen-cli. zen-cli is missing!");
+				"the command line utilities zcashd and zcashn-cli. zcash-cli is missing!");
 		}
 		
 		zcashd = new File(dir, OSUtil.getZCashd());
@@ -141,7 +144,7 @@ public class ZCashClientCaller
 		{
 		    throw new IOException(
 		    	"The ZCash command line utility " + zcashcli.getCanonicalPath() +
-		    	" was found, but zend was not found!");
+		    	" was found, but zcashd was not found!");
 		}
 	}
 
@@ -151,12 +154,30 @@ public class ZCashClientCaller
 	{
 		String exportDir = OSUtil.getUserHomeDirectory().getCanonicalPath();
 		
-	    CommandExecutor starter = new CommandExecutor(
-	        new String[] 
-	        {
-	        	zcashd.getCanonicalPath(), 
-	        	"-exportdir=" + wrapStringParameter(exportDir)
-	        });
+		List<String> zendOptions = Util.loadZendParameters(true);
+		Log.info("Custom zcashd options to be used are: {0}", zendOptions.toString());
+		
+		String zendFullCommandLine[] = new String[zendOptions.size() + 1];
+		zendFullCommandLine[0] = zcashd.getCanonicalPath();
+		
+		// Transfer the zcashd parameters, also possibly wrap them
+		for (int i = 0; i < zendOptions.size(); i++)
+		{
+			String option = zendOptions.get(i);
+			boolean containEq = option.contains("=");
+			boolean containsSpaces = option.contains(" ") || option.contains("\t");
+			
+			// The options come trimmed, however it is possible that they have weird content and need to be wrapped
+			// on Windows
+			if ((!containEq) || (containsSpaces))
+			{
+				option = wrapStringParameter(option);
+			}
+			
+			zendFullCommandLine[i+1] = option;
+		}
+		
+	    CommandExecutor starter = new CommandExecutor(zendFullCommandLine);
 	    
 	    return starter.startChildProcess();
 	}
@@ -255,13 +276,13 @@ public class ZCashClientCaller
 	    	JsonObject trans = jsonTransactions.get(i).asObject();
 
 	    	// Needs to be the same as in getWalletZReceivedTransactions()
-	    	// TODO: some day refactor to use object containers
+	    	// TODO: someday refactor to use object containers
 	    	strTransactions[i][0] = "\u2606T (Public)";
 	    	strTransactions[i][1] = trans.getString("category", "ERROR!");
 	    	strTransactions[i][2] = trans.get("confirmations").toString();
 	    	strTransactions[i][3] = trans.get("amount").toString();
 	    	strTransactions[i][4] = trans.get("time").toString();
-	    	strTransactions[i][5] = trans.getString("address", notListed + " (Z Address not listed by wallet!)");
+	    	strTransactions[i][5] = trans.getString("address", notListed + " (Z address not listed by wallet!)");
 	    	strTransactions[i][6] = trans.get("txid").toString();
 
 	    }
@@ -302,7 +323,7 @@ public class ZCashClientCaller
 
 		    	String txID = trans.getString("txid", "ERROR!");
 		    	// Needs to be the same as in getWalletPublicTransactions()
-		    	// TODO: some day refactor to use object containers
+		    	// TODO: someday refactor to use object containers
 		    	currentTransaction[0] = "\u2605Z (Private)";
 		    	currentTransaction[1] = "receive";
 		    	
@@ -466,7 +487,7 @@ public class ZCashClientCaller
 	}
 
 
-	// return UNIX time as tring
+	// return UNIX time as string
 	public synchronized String getWalletTransactionTime(String txID)
 		throws WalletCallException, IOException, InterruptedException
 	{
@@ -580,7 +601,7 @@ public class ZCashClientCaller
 
 		DecimalFormatSymbols decSymbols = new DecimalFormatSymbols(Locale.ROOT);
 		
-		// Properly format teh transaction fee as a number
+		// Properly format the transaction fee as a number
 		if ((transactionFee == null) || (transactionFee.trim().length() <= 0))
 		{
 			transactionFee = "0.0001"; // Default value
@@ -655,7 +676,7 @@ public class ZCashClientCaller
 	 * @param memo text memo to include in the transaction
 	 * @param transactionFee transaction see to include
 	 * 
-	 * @return a zend operation ID for the send operation
+	 * @return a zcashd operation ID for the send operation
 	 * 
 	 * @throws WalletCallException
 	 * @throws IOException
@@ -665,7 +686,7 @@ public class ZCashClientCaller
 			                                              String amount, String memo, String transactionFee)
 		throws WalletCallException, IOException, InterruptedException
 	{
-		Log.info("Starting operation send cash with retrun of change. Parameters are: from address: {0}, to address: {1}, " + 
+		Log.info("Starting operation send cash with return of change. Parameters are: from address: {0}, to address: {1}, " + 
 	             "current balance: {2}, amount: {3}, memo: {4}, transaction fee: {5}",
 				 from, to, balance, amount, memo, transactionFee);
 		
@@ -742,7 +763,7 @@ public class ZCashClientCaller
 					                      formattedAmountToSend + " | \n" + toManyArrayStr);
 		}		
 		
-		Log.info("The following send command (with change retrun) will be issued: " +
+		Log.info("The following send command (with change return) will be issued: " +
                 sendCashParameters[0] + " " + sendCashParameters[1] + " " +
                 sendCashParameters[2] + " " + sendCashParameters[3] + " " +
                 sendCashParameters[4] + " " + sendCashParameters[5] + ".");
@@ -1007,7 +1028,7 @@ public class ZCashClientCaller
    			 if ((respObject.getDouble("code", -1) == -15) &&
    				 (respObject.getString("message", "ERR").indexOf("unencrypted wallet") != -1))
    			 {
-   				 // Obviously unencrupted
+   				 // Obviously unencrypted
    				 return false;
    			 } else
    			 {
@@ -1019,7 +1040,7 @@ public class ZCashClientCaller
    			 if ((respObject.getDouble("code", -1) == -15) &&
    				 (respObject.getString("message", "ERR").indexOf("unencrypted wallet") != -1))
    			 {
-   				 // Obviously unencrupted
+   				 // Obviously unencrypted
    				 return false;
    			 } else
    			 {
@@ -1333,5 +1354,5 @@ public class ZCashClientCaller
 		{
 			map.put(name, val.toString());
 		}
-	}
+	}	
 }

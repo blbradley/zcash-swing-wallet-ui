@@ -43,7 +43,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -90,6 +92,7 @@ public class ZCashUI
     private JMenuItem menuItemMessagingOptions;
     private JMenuItem menuItemShareFileViaIPFS;
     private JMenuItem menuItemExportToArizen;
+    private JMenuItem menuItemZendParameters;
 
     private DashboardPanel   dashboard;
     private TransactionsDetailPanel transactionDetailsPanel;
@@ -151,7 +154,7 @@ public class ZCashUI
         		    addresses = new AddressesPanel(this, clientCaller, errorReporter, labelStorage, installationObserver));
         tabs.addTab(langUtil.getString("main.frame.tab.send.cash.title"),
         		    new ImageIcon(cl.getResource("images/send.png")),
-        		    sendPanel = new SendCashPanel(clientCaller, errorReporter, installationObserver, backupTracker));
+        		    sendPanel = new SendCashPanel(clientCaller, errorReporter, installationObserver, backupTracker, labelStorage));
         tabs.addTab(langUtil.getString("main.frame.tab.address.book.title"),
     		        new ImageIcon(cl.getResource("images/address-book.png")),
     		        addressBookPanel = new AddressBookPanel(sendPanel, tabs, labelStorage));
@@ -193,6 +196,8 @@ public class ZCashUI
         menuItemImportOnePrivateKey.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, accelaratorKeyMask));
         wallet.add(menuItemExportToArizen = new JMenuItem(langUtil.getString("menu.label.export.to.arizen"), KeyEvent.VK_A));
         menuItemExportToArizen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, accelaratorKeyMask));
+        wallet.add(menuItemZendParameters = new JMenuItem(langUtil.getString("wallet.menu.edit.zcashd.params"), KeyEvent.VK_Z));
+        menuItemZendParameters.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, accelaratorKeyMask));
         mb.add(wallet);
 
         JMenu messaging = new JMenu(langUtil.getString("menu.label.messaging"));
@@ -224,7 +229,7 @@ public class ZCashUI
                 try {
                     Log.info("Action ["+e.getActionCommand(  )+"] performed");
                     LanguageMenuItem item = (LanguageMenuItem) e.getSource();
-                    langUtil.updatePreferedLanguage(item.getLocale());
+                    langUtil.updatePreferredLanguage(item.getLocale());
                     JOptionPane.showMessageDialog(
                             ZCashUI.this.getRootPane().getParent(),
                             langUtil.getString("dialog.message.language.prefs.update"),
@@ -302,7 +307,7 @@ public class ZCashUI
             }
         );
         
-        /** Encrypt menu item is not initiliazed
+        /** Encrypt menu item is not initialized
         menuItemEncrypt.addActionListener(
             new ActionListener()
             {
@@ -446,6 +451,18 @@ public class ZCashUI
                     }
                 }
         );
+        
+        menuItemZendParameters.addActionListener(
+                new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        ZCashUI.this.walletOps.editZendOptions();
+                    }
+                }
+        );
+
 
         // Close operation
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -466,7 +483,7 @@ public class ZCashUI
                 try
                 {
                     String userDir = OSUtil.getSettingsDirectory();
-                    File warningFlagFile = new File(userDir + File.separator + "initialInfoShown_0.82.flag");
+                    File warningFlagFile = new File(userDir + File.separator + "initialInfoShown_0.84.flag");
                     if (warningFlagFile.exists())
                     {
                         return;
@@ -538,7 +555,7 @@ public class ZCashUI
 		int width = 1040;
 		if (os == OS_TYPE.MAC_OS)
 		{
-			width += 100; // Needs to be wider on Mac OS
+			width += 100; // Needs to be wider on macOS
 		}
 		
 		this.setSize(new Dimension(width, currentSize.height));
@@ -570,6 +587,8 @@ public class ZCashUI
         try
         {
         	OS_TYPE os = OSUtil.getOSType();
+        	
+        	possiblyCreateZendOptionsFile();
         	
         	if ((os == OS_TYPE.WINDOWS) || (os == OS_TYPE.MAC_OS))
         	{
@@ -737,7 +756,8 @@ public class ZCashUI
 			Log.info("ZEC configuration file " + zenConfigFile.getCanonicalPath() +
 					 " does not exist. It will be created with default settings.");
 			
-			Random r = new Random(System.currentTimeMillis());
+			Random r = new Random(System.nanoTime());
+			SecureRandom r2 = new SecureRandom(); // Improved randomness
 			
 			PrintStream configOut = new PrintStream(new FileOutputStream(zenConfigFile));
 			
@@ -751,26 +771,79 @@ public class ZCashUI
 			configOut.println("#############################################################################");
 			configOut.println("");
 			configOut.println("# The rpcuser/rpcpassword are used for the local call to zcashd");
-			configOut.println("rpcuser=User" + Math.abs(r.nextInt()));
+			configOut.println("rpcuser=User" + Math.abs(r2.nextInt()));
 			configOut.println("rpcpassword=Pass" + Math.abs(r.nextInt()) + "" + 
-			                                       Math.abs(r.nextInt()) + "" + 
-					                               Math.abs(r.nextInt()));
-			configOut.println("");
-			
-			/*
-			 * This is not necessary as of release:
-			 *  https://github.com/ZencashOfficial/zen/releases/tag/v2.0.9-3-b8d2ebf
-			configOut.println("# Well-known nodes to connect to - to speed up acquiring initial connections");
-			configOut.println("addnode=zpool.blockoperations.com"); 
-			configOut.println("addnode=luckpool.org:8333");
-			configOut.println("addnode=zencash.cloud");
-			configOut.println("addnode=zen.suprnova.cc");
-			configOut.println("addnode=zen.bitfire.one");
-			configOut.println("addnode=zenmine.pro");
-			*/
-			
+			                                       Math.abs(r2.nextInt()) + "" + 
+					                               Math.abs(r2.nextInt()));
+			configOut.println("");			
 			configOut.close();
 		}
     }
     
+    
+    /**
+     * Possibly creates the configuration file wit zcashd command line options.
+     * 
+     * @throws IOException
+     */
+    public static void possiblyCreateZendOptionsFile()
+    	throws IOException
+    {
+    	String settingsDir = OSUtil.getSettingsDirectory();
+    	File dir = new File(settingsDir);
+    	
+		if (!dir.exists())
+		{
+			if (!dir.mkdirs())
+			{
+				Log.error("ERROR: Could not create settings directory: " + dir.getCanonicalPath());
+				throw new IOException("Could not create settings directory: " + dir.getCanonicalPath());
+			}
+		}
+		
+		File zendOptionsFile = new File(dir, "zcashd-cmd-options.conf");
+		if (!zendOptionsFile.exists())
+		{
+			Log.info("zcashd command line options configuration file " + zendOptionsFile.getCanonicalPath() + 
+					 " does not exist. It will be created with default settings.");
+			
+			PrintWriter configOut = new PrintWriter(zendOptionsFile, "UTF-8");
+			String exportDir = OSUtil.getUserHomeDirectory().getCanonicalPath();
+			
+			configOut.println("########################################################################################");
+			configOut.println("#                                                                                      #");
+			configOut.println("#               zcashd command-line options configuration file                           #");
+			configOut.println("#                                                                                      #");
+			configOut.println("########################################################################################");
+			configOut.println("#                                                                                      #");
+			configOut.println("# This file has been automatically generated by the ZENCash GUI wallet with            #");
+			configOut.println("# default settings. It may be further cutsomized by hand only. The command             #");
+			configOut.println("# line options specified here are used to start zcashd in the GUI wallet!                #");
+			configOut.println("#                                                                                      #");
+			configOut.println("# The format of the file is the following:                                             #");
+			configOut.println("# 1. Each non-empty line of the file contains one command line option                  #");
+			configOut.println("# 2. If a line has as its first non-white space character #, it is ignored             #");
+			configOut.println("# 3. Lines with white space only are ignored                                           #");
+			configOut.println("#                                                                                      #");
+			configOut.println("########################################################################################");
+			configOut.println("#                                                                                      #");
+			configOut.println("# CAUTION: Editing the zcashd options is meant to be done by experienced                 #");
+			configOut.println("#          users. Any mistake made here may prevent the GUI wallet from                #");
+			configOut.println("#          starting properly!                                                          #");
+			configOut.println("#                                                                                      #");
+			configOut.println("########################################################################################");
+			configOut.println("#                                                                                      #");
+			configOut.println("# Creation date: " + new Date().toString());
+			configOut.println("#                                                                                      #");
+			configOut.println("########################################################################################");
+			configOut.println("");
+			configOut.println("");
+			configOut.println("# The default ZEN backup directory is the user home dir. This is the place for");
+			configOut.println("# instance where the wallet backups are stored.");
+			configOut.println("-exportdir=" + exportDir);
+			configOut.println("");
+			
+			configOut.close();
+		}
+    }
 }
