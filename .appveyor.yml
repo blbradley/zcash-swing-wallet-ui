@@ -33,6 +33,12 @@ for:
     only:
       - master
 
+  deploy:
+    - provider: GitHub
+      artifact: build/mac/ZcashSwingWalletMac.zip
+      on:
+        branch: master
+
   deploy_script:
     - gem install package_cloud
     - package_cloud push blbradley/zcash-wallet-dev/ubuntu/xenial build/ubuntu-package/*.deb
