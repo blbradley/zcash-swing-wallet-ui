@@ -41,7 +41,7 @@ deploy:
     on:
       branch: release-0.84
   - provider: GitHub
-    artifact: 'build/ubuntu-package/*.deb'
+    artifact: 'build\/ubuntu-package\/.*\.deb'
     auth_token: $GITHUB_TOKEN
     on:
       branch: release-0.84
