@@ -34,6 +34,7 @@ artifacts:
 
 deploy:
   - provider: GitHub
+    tag: v${VERSION}
     release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: build/ZcashSwingWalletMac.zip
     auth_token: $GITHUB_TOKEN
@@ -41,6 +42,7 @@ deploy:
       branch: master
       configuration: release
   - provider: GitHub
+    tag: v${VERSION}
     release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: installer/target/zcash-wallet-installer.exe
     auth_token: $GITHUB_TOKEN
@@ -48,6 +50,7 @@ deploy:
       branch: master
       configuration: release
   - provider: GitHub
+    tag: v${VERSION}
     release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: /build\/ubuntu-package\/.*\.deb/
     auth_token: $GITHUB_TOKEN
