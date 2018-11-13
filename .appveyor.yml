@@ -34,7 +34,7 @@ for:
 -
   branches:
     only:
-      - master
+      - release-0.84
 
   deploy:
     - provider: GitHub
