@@ -5,6 +5,7 @@ environment:
     secure: xx7HMgFYZZw9TVWrcdrPG0a4t+M7KGBs/A9ayG7UJjjuM61HyFNE7jjXhvSlqeoFNFYII3wk8oYfB3T8OGgtvQ==
   GITHUB_TOKEN:
     secure: 41ct1Jt+6D2+w8kuO4M3MqYo/opOczBAbsr7OxV3HZZyS/S+9rUsUbeyTWg14jXj
+  VERSION: 0.84.0
 
 install:
   - java -version
@@ -31,20 +32,23 @@ artifacts:
 
 deploy:
   - provider: GitHub
+    release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: build/ZcashSwingWalletMac.zip
     auth_token: $GITHUB_TOKEN
     on:
-      branch: release-0.84
+      branch: master
   - provider: GitHub
+    release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: installer/target/zcash-wallet-installer.exe
     auth_token: $GITHUB_TOKEN
     on:
-      branch: release-0.84
+      branch: master
   - provider: GitHub
+    release: Zcash Desktop GUI Wallet ${VERSION}
     artifact: /build\/ubuntu-package\/.*\.deb/
     auth_token: $GITHUB_TOKEN
     on:
-      branch: release-0.84
+      branch: master
 
 for:
 -
