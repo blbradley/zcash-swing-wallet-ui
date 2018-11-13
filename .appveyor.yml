@@ -40,7 +40,7 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
-      configuration: release
+      CONFIGURATION: release
   - provider: GitHub
     tag: v${VERSION}
     release: Zcash Desktop GUI Wallet ${VERSION}
@@ -48,7 +48,7 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
-      configuration: release
+      CONFIGURATION: release
   - provider: GitHub
     tag: v${VERSION}
     release: Zcash Desktop GUI Wallet ${VERSION}
@@ -56,7 +56,7 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
-      configuration: release
+      CONFIGURATION: release
 
 for:
 -
