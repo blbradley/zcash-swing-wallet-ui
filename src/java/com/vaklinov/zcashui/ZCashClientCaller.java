@@ -525,7 +525,7 @@ public class ZCashClientCaller
 		throws WalletCallException, IOException, InterruptedException
 	{
 	    String strResponse = this.executeCommandAndGetSingleStringResponse(
-                (isZAddress ? "z_" : "") + "getnewaddress"),
+                (isZAddress ? "z_" : "") + "getnewaddress",
                 (isZAddress ? "sapling" : "")
 	    );
 
