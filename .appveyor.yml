@@ -10,9 +10,7 @@ environment:
 install:
   - java -version
 
-configuration:
-  - debug
-  - release
+configuration: debug
 
 build_script:
   - ant -buildfile ./src/build/build.xml $CONFIGURATION
@@ -40,7 +38,7 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
-      configuration: release
+      CONFIGURATION: release
   - provider: GitHub
     tag: v${VERSION}
     release: Zcash Desktop GUI Wallet ${VERSION}
@@ -48,7 +46,7 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
-      configuration: release
+      CONFIGURATION: release
   - provider: GitHub
     tag: v${VERSION}
     release: Zcash Desktop GUI Wallet ${VERSION}
@@ -56,7 +54,7 @@ deploy:
     auth_token: $GITHUB_TOKEN
     on:
       branch: master
-      configuration: release
+      CONFIGURATION: release
 
 for:
 -
@@ -67,3 +65,10 @@ for:
   deploy_script:
     - gem install package_cloud
     - package_cloud push blbradley/zcash-wallet-dev/ubuntu/xenial build/ubuntu-package/*.deb
+
+-
+  branches:
+    only:
+      - master
+
+  configuration: release
