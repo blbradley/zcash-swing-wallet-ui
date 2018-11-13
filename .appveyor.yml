@@ -3,6 +3,9 @@ image: ubuntu
 environment:
   PACKAGECLOUD_TOKEN:
     secure: xx7HMgFYZZw9TVWrcdrPG0a4t+M7KGBs/A9ayG7UJjjuM61HyFNE7jjXhvSlqeoFNFYII3wk8oYfB3T8OGgtvQ==
+  GITHUB_TOKEN:
+    secure: 41ct1Jt+6D2+w8kuO4M3MqYo/opOczBAbsr7OxV3HZZyS/S+9rUsUbeyTWg14jXj
+
 
 install:
   - java -version
@@ -36,8 +39,7 @@ for:
   deploy:
     - provider: GitHub
       artifact: build/mac/ZcashSwingWalletMac.zip
-      on:
-        branch: master
+      token: $GITHUB_TOKEN
 
   deploy_script:
     - gem install package_cloud
