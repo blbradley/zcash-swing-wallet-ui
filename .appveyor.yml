@@ -24,8 +24,8 @@ artifacts:
   - path: 'installer/target/zcash-wallet-installer.exe'
     name: Windows installer
 
-  - path: 'ZcashSwingWalletUI.app'
-    name: MacOS app
+  - path: 'build/mac'
+    name: ZcashSwingWalletMac
 
 for:
 -

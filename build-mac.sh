@@ -2,9 +2,10 @@ git clone https://github.com/Jorl17/jar2app
 cd jar2app
 chmod +x install.sh uninstall.sh
 sudo ./install.sh
-
 cd -
-jar2app build/jars/ZcashSwingWalletUI.jar -i src/resources/images/zcash.icns
+
+mkdir -p build/mac
+jar2app build/jars/ZcashSwingWalletUI.jar -i src/resources/images/zcash.icns build/mac/ZcashSwingWalletUI.app
 
 wget https://github.com/kozyilmaz/zcash-apple/releases/download/v2.0.1a/zcash-macos-v2.0.1a.tar.bz2
 wget https://github.com/kozyilmaz/zcash-apple/releases/download/v2.0.1a/zcash-macos-v2.0.1a.tar.bz2.hash
@@ -12,4 +13,4 @@ wget https://github.com/kozyilmaz/zcash-apple/releases/download/v2.0.1a/zcash-ma
 shasum -a 256 -c zcash-macos-v2.0.1a.tar.bz2.hash
 tar -xvf zcash-macos-v2.0.1a.tar.bz2
 
-cp zcash-macos-v2.0.1a/usr/local/bin/zcash* ZcashSwingWalletUI.app/Contents
+cp zcash-macos-v2.0.1a/usr/local/bin/zcash* build/mac/ZcashSwingWalletUI.app/Contents
