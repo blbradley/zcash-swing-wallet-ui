@@ -524,11 +524,12 @@ public class ZCashClientCaller
 	public synchronized String createNewAddress(boolean isZAddress)
 		throws WalletCallException, IOException, InterruptedException
 	{
-	    String strCommand = (isZAddress ? "z_" : "") + "getnewaddress" + (isZAddress ? " sapling" : "");
-	    Log.info("createNewAddress command is {0}", strCommand);
-	    String strResponse = this.executeCommandAndGetSingleStringResponse(strCommand);
+	    String strResponse = this.executeCommandAndGetSingleStringResponse(
+                (isZAddress ? "z_" : "") + "getnewaddress"),
+                (isZAddress ? "sapling" : "")
+	    );
 
-		return strResponse.trim();
+	    return strResponse.trim();
 	}
 
 
