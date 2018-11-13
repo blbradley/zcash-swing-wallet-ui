@@ -33,7 +33,7 @@ artifacts:
 deploy:
   - provider: GitHub
     artifact: build/mac/ZcashSwingWalletMac.zip
-    token: $GITHUB_TOKEN
+    auth_token: $GITHUB_TOKEN
     on:
       branch: release-0.84
 
