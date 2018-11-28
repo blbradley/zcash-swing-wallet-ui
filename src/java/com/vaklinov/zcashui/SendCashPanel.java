@@ -776,7 +776,7 @@ public class SendCashPanel
 			{
 				label = "[" + label + "] ";
 			}
-			String item = label + formattedBalance + " ZEN - " + address;
+			String item = label + formattedBalance + " ZEC - " + address;
 			if (item.length() > 120)
 			{
 				item = item.substring(0, 118) + "...";
